@@ -14,7 +14,7 @@ public class EuclidGreatestCommonDivisor {
         System.out.println(gcd);
 /*
         number1: 13 number2 23 //NOTE: Here we can see how modulus works.
-        number1: 23 number2 13 //NOTE:When number1 is less than number2 it automatically get reversed
+        number1: 23 number2 13 //NOTE:When number1 is less than number2 it automatically get reversed/swap
         number1: 13 number2 10
         number1: 10 number2 3
         number1: 3 number2 1
