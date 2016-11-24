@@ -28,7 +28,6 @@ public class ReverseArray {
         return numericArray;
     }
 
-
     public static <T> T[] reverse(T[] array) {
         int arrayLength = array.length;
         if (arrayLength == 0) throw new IllegalArgumentException("Empty array.");

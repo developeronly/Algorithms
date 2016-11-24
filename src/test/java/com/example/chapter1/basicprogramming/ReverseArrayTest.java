@@ -21,7 +21,6 @@ public class ReverseArrayTest {
         double[] expectedNumericArray = new double[]{21.55, 23.33, 4.23, 2.3};
         assertArrayEquals("Testing reversing float array...",
                 ReverseArray.reverse(inputNumericArray), expectedNumericArray, 0.001);
-
     }
 
     @Test
@@ -78,6 +77,22 @@ public class ReverseArrayTest {
         }
         assertArrayEquals("Testing object array...",
                 ReverseArray.reverse(inputLargeArray), expectedLargeArray);
+    }
+
+    @Test
+    public void reverseOddLengthArray() {
+        int[] inputNumericArray = new int[]{2, 4, 23, 21, 34};
+        int[] expectedNumericArray = new int[]{34, 21, 23, 4, 2};
+        assertArrayEquals("Testing odd length array...",
+                ReverseArray.reverse(inputNumericArray), expectedNumericArray);
+    }
+
+    @Test
+    public void reverseEvenLengthArray() {
+        int[] inputNumericArray = new int[]{2, 4, 23, 21};
+        int[] expectedNumericArray = new int[]{21, 23, 4, 2};
+        assertArrayEquals("Testing even length array...",
+                ReverseArray.reverse(inputNumericArray), expectedNumericArray);
     }
 
 }
