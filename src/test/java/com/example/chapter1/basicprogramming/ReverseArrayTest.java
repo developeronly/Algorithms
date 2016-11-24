@@ -46,4 +46,38 @@ public class ReverseArrayTest {
                 ReverseArray.reverse(inputStudentArray), expectedStudentArray);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void reverseEmptyArrayOfObjects() {
+        String[] emptyArray = new String[]{};
+        ReverseArray.reverse(emptyArray);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void reverseEmptyNumericArray() {
+        int[] emptyArray = new int[]{};
+        ReverseArray.reverse(emptyArray);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void reverseEmptyFloatArray() {
+        double[] emptyArray = new double[]{};
+        ReverseArray.reverse(emptyArray);
+    }
+
+    @Test
+    public void reverseLargeArray() {
+        int maxSize = 1000;
+        String[] inputLargeArray = new String[maxSize];
+        String[] expectedLargeArray = new String[maxSize];
+
+        for (int i = 0; i < maxSize; i++) {
+            inputLargeArray[i] = new String("" + i);
+        }
+        for (int i = inputLargeArray.length - 1, j = 0; i >= 0 && j < maxSize; i--, j++) {
+            expectedLargeArray[j] = new String("" + i);
+        }
+        assertArrayEquals("Testing object array...",
+                ReverseArray.reverse(inputLargeArray), expectedLargeArray);
+    }
+
 }

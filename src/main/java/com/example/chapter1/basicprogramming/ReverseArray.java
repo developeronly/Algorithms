@@ -8,6 +8,7 @@ public class ReverseArray {
 
     public static int[] reverse(int[] numericArray) {
         int arrayLength = numericArray.length;
+        if (arrayLength == 0) throw new IllegalArgumentException("Empty array.");
         for (int index = 0; index < arrayLength / 2; index++) {
             int temp = numericArray[index];
             numericArray[index] = numericArray[arrayLength - 1 - index];
@@ -18,6 +19,7 @@ public class ReverseArray {
 
     public static double[] reverse(double[] numericArray) {
         int arrayLength = numericArray.length;
+        if (arrayLength == 0) throw new IllegalArgumentException("Empty array.");
         for (int index = 0; index < arrayLength / 2; index++) {
             double temp = numericArray[index];
             numericArray[index] = numericArray[arrayLength - 1 - index];
@@ -29,6 +31,7 @@ public class ReverseArray {
 
     public static <T> T[] reverse(T[] array) {
         int arrayLength = array.length;
+        if (arrayLength == 0) throw new IllegalArgumentException("Empty array.");
         for (int index = 0; index < arrayLength / 2; index++) {
             T temp = array[index];
             array[index] = array[arrayLength - 1 - index];
