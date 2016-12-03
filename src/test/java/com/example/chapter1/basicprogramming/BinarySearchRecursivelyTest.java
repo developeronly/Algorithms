@@ -40,4 +40,23 @@ public class BinarySearchRecursivelyTest {
                 expected, BinarySearchRecursively.rank(input, inAvailableElement[4]));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void searchInEmptyArray() {
+        int[] emptyArray = new int[]{};
+        BinarySearchRecursively.rank(emptyArray, 21);
+
+    }
+
+    @Test
+    public void searchInUnSortedArray() {
+        int[] input = new int[]{43, 44, 57, 2, 4};
+        int availableElement = 44;
+        int inAvailableElement = 99;
+        int expectedInCaseOfNotAvailable = -1;
+        Assert.assertEquals("Search for valid availability...",
+                availableElement, BinarySearchRecursively.rank(input, availableElement));
+        Assert.assertEquals("Search for valid availability...",
+                expectedInCaseOfNotAvailable, BinarySearchRecursively.rank(input, inAvailableElement));
+    }
+
 }
