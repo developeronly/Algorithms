@@ -69,11 +69,13 @@ public class ReverseArrayTest {
         String[] inputLargeArray = new String[maxSize];
         String[] expectedLargeArray = new String[maxSize];
 
-        for (int i = 0; i < maxSize; i++) {
-            inputLargeArray[i] = new String("" + i);
+        for (int index = 0; index < maxSize; index++) {
+            inputLargeArray[index] = new String("" + index);
         }
-        for (int i = inputLargeArray.length - 1, j = 0; i >= 0 && j < maxSize; i--, j++) {
-            expectedLargeArray[j] = new String("" + i);
+        for (int lastIndex = inputLargeArray.length - 1, startIndex = 0;
+             lastIndex >= 0 && startIndex < maxSize;
+             lastIndex--, startIndex++) {
+            expectedLargeArray[startIndex] = new String("" + lastIndex);
         }
         assertArrayEquals("Testing object array...",
                 expectedLargeArray, ReverseArray.reverse(inputLargeArray));

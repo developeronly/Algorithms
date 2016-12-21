@@ -1,9 +1,9 @@
 package com.example.chapter1.basicprogramming.models;
 
 public class Student {
-    int rollNumber;
-    String name;
-    String address;
+    private int rollNumber;
+    private String name;
+    private String address;
 
     public Student() {
     }

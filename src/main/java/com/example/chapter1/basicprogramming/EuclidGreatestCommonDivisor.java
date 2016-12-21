@@ -1,6 +1,6 @@
 package com.example.chapter1.basicprogramming;
 
-public class EuclidGreatestCommonDivisor {
+public final class EuclidGreatestCommonDivisor {
 
     public static int calculate(int number1, int number2) {
         if (number2 == 0) return number1;

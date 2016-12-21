@@ -1,6 +1,5 @@
 package com.example.chapter1.basicprogramming;
 
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

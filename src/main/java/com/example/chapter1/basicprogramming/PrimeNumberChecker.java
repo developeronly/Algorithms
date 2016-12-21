@@ -1,6 +1,6 @@
 package com.example.chapter1.basicprogramming;
 
-public class PrimeNumberChecker {
+public final class PrimeNumberChecker {
 
     public static boolean isPrime(int number) {
         if (number < 2) return false;
