@@ -47,18 +47,43 @@ public class FixedCapacityStackTest {
         assertEquals("Check popped element with pushed one..", pushedStudent, poppedStudent);
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = IllegalStateException.class)
     public void popElementFromEmptyStack() {
         FixedCapacityStack stack = initStackWithCapacity(SMALL_STACK_SIZE);
         stack.pop();
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void pushAnElementOnFilledStack() {
-        FixedCapacityStack stack = initStackWithCapacity(SMALL_STACK_SIZE);
-        for (int index = 0; index < SMALL_STACK_SIZE; index++) stack.push("" + index);
-        stack.push("Should throw an exception.");
+    @Test(expected = IllegalStateException.class)
+    public void initializingStackWithZeroCapacity() {
+        FixedCapacityStack stack = initStackWithCapacity(0);
+    }
 
+    @Test
+    public void resizingStack() {
+        FixedCapacityStack stack = initStackWithCapacity(SMALL_STACK_SIZE);
+        int newCapacity = 20;
+        stack.resize(newCapacity);
+        assertEquals("Check newly resized stack.", newCapacity, stack.currentCapacity());
+    }
+
+    @Test
+    public void checkResizingOnFullStack() {
+        int initialCapacity = 1;
+        FixedCapacityStack stack = initStackWithCapacity(initialCapacity);
+        stack.push("First element.");
+        stack.push("Second element.");
+        assertEquals("Check newly resized stack.", (initialCapacity * stack.getResizingFactor()), stack
+                .currentCapacity());
+    }
+
+    @Test
+    public void checkResizingOnEmptyStack() {
+        FixedCapacityStack stack = initStackWithCapacity(SMALL_STACK_SIZE);
+        while (stack.size() <= stack.currentCapacity() / 4)
+            stack.push("Element.");
+        stack.pop();
+        assertEquals("Check newly resized stack.",
+                (SMALL_STACK_SIZE / stack.getResizingFactor()), stack.currentCapacity());
     }
 
 }
