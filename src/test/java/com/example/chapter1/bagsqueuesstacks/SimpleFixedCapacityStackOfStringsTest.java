@@ -24,8 +24,7 @@ public class SimpleFixedCapacityStackOfStringsTest {
     public void pushStringInsideStack() {
         FixedCapacityStackOfStrings stack = initStackWithCapacity(SMALL_STACK_SIZE);
         stack.push("First String");
-        assertEquals("Check size after adding one string element.",
-                1, stack.size());
+        assertEquals("Check size after adding one string element.", 1, stack.size());
     }
 
     @Test
