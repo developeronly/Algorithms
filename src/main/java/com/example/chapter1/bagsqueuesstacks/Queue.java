@@ -2,11 +2,12 @@ package com.example.chapter1.bagsqueuesstacks;
 
 import java.util.Iterator;
 
-//Implementing stack using linked list
-public class Stack<Item> implements Iterable<Item> {
+//Implemented FIFO Queue based on LinkedList
+public class Queue<Item> implements Iterable<Item> {
 
-    private Node first;
     private int numberOfItems;
+    private Node first;
+    private Node last;
 
     public int size() {
         return numberOfItems;
@@ -16,26 +17,32 @@ public class Stack<Item> implements Iterable<Item> {
         return first == null;
     }
 
-    public void push(Item element) {
-        //Add element to the beginning of list
-        Node oldFirst = first;
-        first = new Node();
-        first.item = element;
-        first.next = oldFirst;
+    public void enqueue(Item element) {
+        //Add element to the end of the list.
+        Node oldLast = last;
+        last = new Node();
+        last.item = element;
+        last.next = null;
+        if (isEmpty()) {
+            first = last;
+        } else {
+            oldLast.next = last;
+        }
         numberOfItems++;
     }
 
-    public Item pop() {
-        //Remove element to the beginning of list
-        if (isEmpty()) throw new IllegalStateException("Empty stack.");
+    public Item dequeue() {
+        //Remove element from the beginning of the list.
+        if (isEmpty()) throw new IllegalStateException("Empty queue.");
         Item item = first.item;
         first = first.next;
+        if (isEmpty()) last = null;
         numberOfItems--;
         return item;
     }
 
     public Iterator<Item> iterator() {
-        return new ListIterator();
+        return new QueueIterator();
     }
 
     private class Node {
@@ -43,7 +50,7 @@ public class Stack<Item> implements Iterable<Item> {
         Node next;
     }
 
-    private class ListIterator implements Iterator<Item> {
+    private class QueueIterator implements Iterator<Item> {
 
         private Node current = first;
 
@@ -58,6 +65,7 @@ public class Stack<Item> implements Iterable<Item> {
             current = current.next;
             return item;
         }
+
     }
 
 }

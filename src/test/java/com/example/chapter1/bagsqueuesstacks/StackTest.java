@@ -83,6 +83,6 @@ public class StackTest {
         elementToBePopped.toArray(expected);
         elementToBePushed.toArray(actual);
         assertArrayEquals("Check stack LIFO order", expected, actual);
-
     }
+
 }
