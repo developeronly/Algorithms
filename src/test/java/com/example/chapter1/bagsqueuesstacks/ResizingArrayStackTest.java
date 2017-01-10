@@ -8,8 +8,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class ResizingArrayStackTest {
@@ -93,13 +94,8 @@ public class ResizingArrayStackTest {
             elementToBePopped.add(iterator.next());
         }
 
-        //Converting lists to arrays.
         Collections.reverse(elementToBePopped);
-        String[] expected = new String[elementToBePopped.size()];
-        String[] actual = new String[elementToBePushed.size()];
-        elementToBePopped.toArray(expected);
-        elementToBePushed.toArray(actual);
-        assertArrayEquals("Check stack LIFO order", expected, actual);
+        assertThat(elementToBePopped, is(elementToBePushed));
 
     }
 

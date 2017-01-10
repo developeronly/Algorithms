@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class QueueTest {
@@ -76,12 +77,7 @@ public class QueueTest {
             elementToBeDequeue.add(iterator.next());
         }
 
-        //Converting lists to arrays.
-        String[] expected = new String[elementToBeDequeue.size()];
-        String[] actual = new String[elementToBeQueued.size()];
-        elementToBeDequeue.toArray(expected);
-        elementToBeQueued.toArray(actual);
-        assertArrayEquals("Check queue's FIFO order", expected, actual);
+        assertThat(elementToBeDequeue, is(elementToBeQueued));
     }
 
 }

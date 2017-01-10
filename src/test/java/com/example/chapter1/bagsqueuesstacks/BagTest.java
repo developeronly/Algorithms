@@ -8,9 +8,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class BagTest {
@@ -61,13 +62,8 @@ public class BagTest {
             elementToBeRetrieved.add(iterator.next());
         }
 
-        //Converting lists to arrays.
         Collections.reverse(elementToBeRetrieved);
-        String[] expected = new String[elementToBeRetrieved.size()];
-        String[] actual = new String[elementToBeAdded.size()];
-        elementToBeRetrieved.toArray(expected);
-        elementToBeAdded.toArray(actual);
-        assertArrayEquals("Check Bag's LIFO order", expected, actual);
+        assertThat(elementToBeRetrieved, is(elementToBeAdded));
     }
 
 }
