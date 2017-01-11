@@ -1,4 +1,4 @@
-package com.example.chapter1.basicprogramming.models;
+package com.example.models;
 
 public class Student {
     private int rollNumber;

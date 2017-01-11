@@ -1,6 +1,6 @@
 package com.example.chapter1.basicprogramming;
 
-import com.example.chapter1.basicprogramming.models.Student;
+import com.example.models.Student;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
