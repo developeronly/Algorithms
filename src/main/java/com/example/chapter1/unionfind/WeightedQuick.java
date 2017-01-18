@@ -8,13 +8,13 @@ import java.util.Map;
 //Implemented using weighted tree.
 public class WeightedQuick extends Union {
 
-    private int[] sizeOfRoots;
+    private int[] weightOfRoots;
 
     public WeightedQuick(int numberOfSites) {
         super(numberOfSites);
-        sizeOfRoots = new int[numberOfSites];
+        weightOfRoots = new int[numberOfSites];
         for (int index = 0; index < numberOfSites; index++)
-            sizeOfRoots[index] = index;
+            weightOfRoots[index] = 1;
     }
 
     @Override
@@ -30,12 +30,12 @@ public class WeightedQuick extends Union {
 
         if (firstSiteRoot == secondSiteRoot) return;
 
-        if (sizeOfRoots[firstSiteRoot] < sizeOfRoots[secondSiteRoot]) {
+        if (weightOfRoots[firstSiteRoot] < weightOfRoots[secondSiteRoot]) {
             getIds()[firstSiteRoot] = secondSiteRoot;
-            sizeOfRoots[secondSiteRoot] += sizeOfRoots[firstSiteRoot];
+            weightOfRoots[secondSiteRoot] += weightOfRoots[firstSiteRoot];
         } else {
             getIds()[secondSiteRoot] = firstSiteRoot;
-            sizeOfRoots[firstSiteRoot] += sizeOfRoots[secondSiteRoot];
+            weightOfRoots[firstSiteRoot] += weightOfRoots[secondSiteRoot];
         }
 
         setNumberOfUnionFound(getNumberOfUnionFound() - 1);
