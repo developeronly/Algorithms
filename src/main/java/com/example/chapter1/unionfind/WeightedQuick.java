@@ -5,11 +5,16 @@ import com.example.models.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-//Implemented using tree.
-public class QuickUnion extends Union {
+//Implemented using weighted tree.
+public class WeightedQuick extends Union {
 
-    public QuickUnion(int numberOfSites) {
+    private int[] sizeOfRoots;
+
+    public WeightedQuick(int numberOfSites) {
         super(numberOfSites);
+        sizeOfRoots = new int[numberOfSites];
+        for (int index = 0; index < numberOfSites; index++)
+            sizeOfRoots[index] = index;
     }
 
     @Override
@@ -25,7 +30,14 @@ public class QuickUnion extends Union {
 
         if (firstSiteRoot == secondSiteRoot) return;
 
-        getIds()[firstSiteRoot] = secondSiteRoot;
+        if (sizeOfRoots[firstSiteRoot] < sizeOfRoots[secondSiteRoot]) {
+            getIds()[firstSiteRoot] = secondSiteRoot;
+            sizeOfRoots[secondSiteRoot] += sizeOfRoots[firstSiteRoot];
+        } else {
+            getIds()[secondSiteRoot] = firstSiteRoot;
+            sizeOfRoots[firstSiteRoot] += sizeOfRoots[secondSiteRoot];
+        }
+
         setNumberOfUnionFound(getNumberOfUnionFound() - 1);
     }
 
