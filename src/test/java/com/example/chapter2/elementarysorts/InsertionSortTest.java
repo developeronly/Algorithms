@@ -3,13 +3,13 @@ package com.example.chapter2.elementarysorts;
 import com.example.models.Student;
 import org.junit.Test;
 
-import static com.example.chapter2.elementarysorts.SortType.SELECTION_SORT;
+import static com.example.chapter2.elementarysorts.SortType.INSERTION_SORT;
 import static org.junit.Assert.assertTrue;
 
-public class SelectionSortTest {
+public class InsertionSortTest {
 
     private Sorter initialise() {
-        return SortFactory.create(SELECTION_SORT);
+        return SortFactory.create(INSERTION_SORT);
     }
 
     @Test

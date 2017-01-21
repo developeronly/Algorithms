@@ -8,6 +8,9 @@ public class SortFactory {
             case SELECTION_SORT:
                 sorter = new SelectionSort();
                 break;
+            case INSERTION_SORT:
+                sorter = new InsertionSort();
+                break;
             default:
                 throw new IllegalStateException("Invalid Sort Type.");
         }
