@@ -1,6 +1,6 @@
 package com.example.models;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private int rollNumber;
     private String name;
     private String address;
@@ -66,4 +66,10 @@ public class Student {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public int compareTo(Student student) {
+        return Integer.compare(this.getRollNumber(), student.getRollNumber());
+    }
+
 }

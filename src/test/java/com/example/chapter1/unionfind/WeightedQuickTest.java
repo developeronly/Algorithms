@@ -2,7 +2,7 @@ package com.example.chapter1.unionfind;
 
 import org.junit.Test;
 
-import static com.example.chapter1.unionfind.UnionFindType.WeightedQuick;
+import static com.example.chapter1.unionfind.UnionFindType.WEIGHTED_QUICK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class WeightedQuickTest {
 
     private Union initialize() {
-        return UnionFindHelper.setup(WeightedQuick);
+        return UnionFindHelper.setup(WEIGHTED_QUICK);
     }
 
     @Test

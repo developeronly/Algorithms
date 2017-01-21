@@ -5,13 +5,13 @@ public class UnionFindFactory {
     public static Union create(UnionFindType unionFindType, int numberOfSites) {
         Union union;
         switch (unionFindType) {
-            case QuickFind:
+            case QUICK_FIND:
                 union = new QuickFind(numberOfSites);
                 break;
-            case QuickUnion:
+            case QUICK_UNION:
                 union = new QuickUnion(numberOfSites);
                 break;
-            case WeightedQuick:
+            case WEIGHTED_QUICK:
                 union = new WeightedQuick(numberOfSites);
                 break;
             default:

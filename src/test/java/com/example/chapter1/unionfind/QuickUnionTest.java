@@ -2,7 +2,7 @@ package com.example.chapter1.unionfind;
 
 import org.junit.Test;
 
-import static com.example.chapter1.unionfind.UnionFindType.QuickUnion;
+import static com.example.chapter1.unionfind.UnionFindType.QUICK_UNION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class QuickUnionTest {
 
     private Union initialize() {
-        return UnionFindHelper.setup(QuickUnion);
+        return UnionFindHelper.setup(QUICK_UNION);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.example.chapter1.unionfind;
 
 public enum UnionFindType {
-    QuickFind,
-    QuickUnion,
-    WeightedQuick;
+    QUICK_FIND,
+    QUICK_UNION,
+    WEIGHTED_QUICK;
 }
