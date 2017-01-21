@@ -30,4 +30,21 @@ public class SelectionSortTest {
         Assert.assertTrue(initialise().isSorted(input));
     }
 
+    @Test
+    public void alreadySortedArray() {
+        Integer[] input = new Integer[3];
+        input[0] = 1;
+        input[1] = 2;
+        input[2] = 3;
+        initialise().sort(input);
+        Assert.assertTrue(initialise().isSorted(input));
+    }
+
+    @Test
+    public void emptyArray() {
+        Integer[] input = new Integer[0];
+        initialise().sort(input);
+        Assert.assertTrue(initialise().isSorted(input));
+    }
+
 }
