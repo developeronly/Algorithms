@@ -5,21 +5,25 @@ import com.example.chapter2.Sorter;
 import com.example.models.Student;
 import org.junit.Test;
 
-import static com.example.chapter2.SortType.SELECTION_SORT;
+import static com.example.chapter2.SortType.SHELL_SORT;
 import static org.junit.Assert.assertTrue;
 
-public class SelectionSortTest {
+public class ShellSortTest {
 
     private Sorter initialise() {
-        return SortFactory.create(SELECTION_SORT);
+        return SortFactory.create(SHELL_SORT);
     }
 
     @Test
     public void checkSortedOrder() {
-        Integer[] input = new Integer[3];
+        Integer[] input = new Integer[7];
         input[0] = 3;
         input[1] = 2;
-        input[2] = 1;
+        input[2] = 12;
+        input[3] = 7;
+        input[4] = 90;
+        input[5] = 11;
+        input[6] = 9;
         initialise().sort(input);
         assertTrue(initialise().isSorted(input));
     }
