@@ -11,6 +11,9 @@ public class SortFactory {
             case INSERTION_SORT:
                 sorter = new InsertionSort();
                 break;
+            case SHELL_SORT:
+                sorter = new ShellSort();
+                break;
             default:
                 throw new IllegalStateException("Invalid Sort Type.");
         }
