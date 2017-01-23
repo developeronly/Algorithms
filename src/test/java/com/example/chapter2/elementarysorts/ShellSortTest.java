@@ -1,9 +1,11 @@
 package com.example.chapter2.elementarysorts;
 
+import com.example.chapter2.SortFactory;
+import com.example.chapter2.Sorter;
 import com.example.models.Student;
 import org.junit.Test;
 
-import static com.example.chapter2.elementarysorts.SortType.SHELL_SORT;
+import static com.example.chapter2.SortType.SHELL_SORT;
 import static org.junit.Assert.assertTrue;
 
 public class ShellSortTest {

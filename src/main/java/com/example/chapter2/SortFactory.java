@@ -1,4 +1,8 @@
-package com.example.chapter2.elementarysorts;
+package com.example.chapter2;
+
+import com.example.chapter2.elementarysorts.InsertionSort;
+import com.example.chapter2.elementarysorts.SelectionSort;
+import com.example.chapter2.elementarysorts.ShellSort;
 
 public class SortFactory {
 

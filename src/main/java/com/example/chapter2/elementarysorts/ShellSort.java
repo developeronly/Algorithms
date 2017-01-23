@@ -1,5 +1,7 @@
 package com.example.chapter2.elementarysorts;
 
+import com.example.chapter2.Sorter;
+
 public class ShellSort extends Sorter {
 
     private static final int FACTOR = 3;

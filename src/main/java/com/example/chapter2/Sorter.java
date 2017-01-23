@@ -1,10 +1,10 @@
-package com.example.chapter2.elementarysorts;
+package com.example.chapter2;
 
 public abstract class Sorter {
 
     public abstract void sort(Comparable[] input);
 
-    protected boolean isSorted(Comparable[] input) {
+    public boolean isSorted(Comparable[] input) {
         for (int index = 1; index < input.length; index++) {
             if (isLess(input[index], input[index - 1])) return false;
         }
