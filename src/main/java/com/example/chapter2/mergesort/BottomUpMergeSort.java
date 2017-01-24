@@ -2,23 +2,20 @@ package com.example.chapter2.mergesort;
 
 import com.example.chapter2.Sorter;
 
-public class TopDownMergeSort extends Sorter {
+public class BottomUpMergeSort extends Sorter {
 
     private Comparable[] auxiliary;
 
     @Override
     public void sort(Comparable[] input) {
-        auxiliary = new Comparable[input.length];
-        mergeSort(input, 0, input.length - 1);
-    }
+        int length = input.length;
+        auxiliary = new Comparable[length];
+        for (int size = 1; size < length; size = size + size) {
+            for (int low = 0; low < length - size; low += size + size) {
+                mergeSortedArrays(input, low, low + size - 1, Math.min(low + size + size - 1, length - 1));
+            }
+        }
 
-    private void mergeSort(Comparable[] input, int low, int high) {
-        if (high <= low) return;
-        int mid = low + (high - low) / 2;
-
-        mergeSort(input, low, mid);
-        mergeSort(input, mid + 1, high);
-        mergeSortedArrays(input, low, mid, high);
     }
 
     private void mergeSortedArrays(Comparable[] input, int low, int mid, int high) {
