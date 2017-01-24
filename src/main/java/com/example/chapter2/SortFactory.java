@@ -3,6 +3,7 @@ package com.example.chapter2;
 import com.example.chapter2.elementarysorts.InsertionSort;
 import com.example.chapter2.elementarysorts.SelectionSort;
 import com.example.chapter2.elementarysorts.ShellSort;
+import com.example.chapter2.mergesort.TopDownMergeSort;
 
 public class SortFactory {
 
@@ -17,6 +18,9 @@ public class SortFactory {
                 break;
             case SHELL_SORT:
                 sorter = new ShellSort();
+                break;
+            case TOP_DOWN_MERGE_SORT:
+                sorter = new TopDownMergeSort();
                 break;
             default:
                 throw new IllegalStateException("Invalid Sort Type.");
