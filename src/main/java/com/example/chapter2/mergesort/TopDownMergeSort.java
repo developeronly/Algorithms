@@ -1,14 +1,10 @@
 package com.example.chapter2.mergesort;
 
-import com.example.chapter2.Sorter;
-
-public class TopDownMergeSort extends Sorter {
-
-    private Comparable[] auxiliary;
+public class TopDownMergeSort extends MergeSort {
 
     @Override
     public void sort(Comparable[] input) {
-        auxiliary = new Comparable[input.length];
+        setAuxiliary(new Comparable[input.length]);
         mergeSort(input, 0, input.length - 1);
     }
 
@@ -19,23 +15,6 @@ public class TopDownMergeSort extends Sorter {
         mergeSort(input, low, mid);
         mergeSort(input, mid + 1, high);
         mergeSortedArrays(input, low, mid, high);
-    }
-
-    private void mergeSortedArrays(Comparable[] input, int low, int mid, int high) {
-        int lowIndex = low;
-        int midIndex = mid + 1;
-
-        for (int index = low; index <= high; index++) {
-            auxiliary[index] = input[index];
-        }
-
-        for (int index = low; index <= high; index++) {
-            if (lowIndex > mid) input[index] = auxiliary[midIndex++];
-            else if (midIndex > high) input[index] = auxiliary[lowIndex++];
-            else if (isLess(auxiliary[midIndex], auxiliary[lowIndex])) input[index] = auxiliary[midIndex++];
-            else input[index] = auxiliary[lowIndex++];
-        }
-
     }
 
 }
