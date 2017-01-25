@@ -5,5 +5,6 @@ public enum SortType {
     INSERTION_SORT,
     SHELL_SORT,
     TOP_DOWN_MERGE_SORT,
-    BOTTOM_UP_MERGE_SORT
+    BOTTOM_UP_MERGE_SORT,
+    QUICK_SORT
 }
