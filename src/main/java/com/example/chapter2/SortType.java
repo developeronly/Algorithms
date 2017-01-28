@@ -6,5 +6,6 @@ public enum SortType {
     SHELL_SORT,
     TOP_DOWN_MERGE_SORT,
     BOTTOM_UP_MERGE_SORT,
-    QUICK_SORT
+    QUICK_SORT,
+    HEAP_SORT
 }

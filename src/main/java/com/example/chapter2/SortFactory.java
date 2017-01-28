@@ -4,6 +4,7 @@ import com.example.chapter2.elementarysorts.InsertionSort;
 import com.example.chapter2.elementarysorts.SelectionSort;
 import com.example.chapter2.elementarysorts.ShellSort;
 import com.example.chapter2.mergesort.MergeSortFactory;
+import com.example.chapter2.priorityqueues.HeapSort;
 import com.example.chapter2.quicksort.QuickSort;
 
 public class SortFactory {
@@ -26,6 +27,9 @@ public class SortFactory {
                 break;
             case QUICK_SORT:
                 sorter = new QuickSort();
+                break;
+            case HEAP_SORT:
+                sorter = new HeapSort();
                 break;
             default:
                 throw new IllegalStateException("Invalid Sort Type.");
