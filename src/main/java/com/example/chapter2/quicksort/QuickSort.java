@@ -1,6 +1,8 @@
 package com.example.chapter2.quicksort;
 
-public class QuickSort extends com.example.chapter2.Sorter {
+import com.example.chapter2.Sorter;
+
+public class QuickSort extends Sorter {
 
     @Override
     public void sort(Comparable[] input) {
