@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SequentialSearchTest {
 
@@ -51,6 +52,31 @@ public class SequentialSearchTest {
         sequentialSearch.put(secondStudent, "Architect");
         assertEquals("Engineer", sequentialSearch.get(firstStudent));
         assertEquals("Architect", sequentialSearch.get(secondStudent));
+    }
+
+    @Test
+    public void getKeys() {
+        SequentialSearch<String, String> sequentialSearch = new SequentialSearch();
+        sequentialSearch.put("first element", "Suraj");
+        sequentialSearch.put("second element", "Raj");
+        sequentialSearch.keys().forEach(key -> assertTrue(sequentialSearch.contains(key)));
+    }
+
+    @Test
+    public void checkExistenceOfKey() {
+        SequentialSearch<String, String> sequentialSearch = new SequentialSearch();
+        sequentialSearch.put("first element", "Suraj");
+        assertTrue(sequentialSearch.contains("first element"));
+    }
+
+    @Test
+    public void delete() {
+        SequentialSearch<String, String> sequentialSearch = new SequentialSearch();
+        sequentialSearch.put("first element", "Suraj");
+        sequentialSearch.put("second element", "Raj");
+        sequentialSearch.put("third element", "Mahesh");
+        sequentialSearch.delete("second element");
+        assertFalse(sequentialSearch.contains("second element"));
     }
 
 }
