@@ -2,6 +2,7 @@ package com.example.chapter3;
 
 import com.example.chapter1.bagsqueuesstacks.Queue;
 
+//Implemented using unordered linked list.
 public class SequentialSearch<Key, Value> {
 
     private Node first;

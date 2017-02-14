@@ -40,7 +40,6 @@ public class SequentialSearchTest {
         sequentialSearch.put("first element", "Suraj");
         String value = sequentialSearch.get("second element");
         assertEquals(null, value);
-
     }
 
     @Test
