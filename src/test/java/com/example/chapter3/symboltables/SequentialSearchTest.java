@@ -1,5 +1,6 @@
-package com.example.chapter3;
+package com.example.chapter3.symboltables;
 
+import com.example.chapter3.symboltables.SequentialSearch;
 import com.example.models.Student;
 import org.junit.Test;
 
