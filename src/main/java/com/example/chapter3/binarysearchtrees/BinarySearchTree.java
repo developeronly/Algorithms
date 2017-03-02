@@ -1,5 +1,7 @@
 package com.example.chapter3.binarysearchtrees;
 
+import com.example.chapter1.bagsqueuesstacks.Queue;
+
 public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     private Node root;
@@ -163,6 +165,36 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
         root.size = size(root.right) + size(root.left) + 1;
         return root;
+    }
+
+    public void print() {
+        print(root);
+    }
+
+    private void print(Node node) {
+        if (node == null) return;
+        print(node.left);
+        System.out.print(" " + node.key);
+        print(node.right);
+    }
+
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key min, Key max) {
+        Queue<Key> queue = new Queue<Key>();
+        keys(root, queue, min, max);
+        return queue;
+    }
+
+    private void keys(Node root, Queue<Key> queue, Key min, Key max) {
+        if (root == null) return;
+        int compareMin = min.compareTo(root.key);
+        int compareMax = max.compareTo(root.key);
+        if (compareMin < 0) keys(root.left, queue, min, max);
+        if (compareMin <= 0) queue.enqueue(root.key);
+        if (compareMax > 0) keys(root.right, queue, min, max);
     }
 
     private class Node {

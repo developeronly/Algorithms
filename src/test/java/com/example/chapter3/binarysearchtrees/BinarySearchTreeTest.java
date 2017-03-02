@@ -147,5 +147,21 @@ public class BinarySearchTreeTest {
         assertEquals(null, binarySearchTree.get("e"));
     }
 
+    @Test
+    public void print() {
+        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        binarySearchTree.print();
+        System.out.println();
+    }
+
+    @Test
+    public void keys() {
+        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        System.out.println();
+        binarySearchTree.keys().forEach(key -> System.out.print(" " + key));
+        System.out.println();
+        binarySearchTree.keys("f", "t").forEach(key -> System.out.print(" " + key));
+        System.out.println();
+    }
 
 }
