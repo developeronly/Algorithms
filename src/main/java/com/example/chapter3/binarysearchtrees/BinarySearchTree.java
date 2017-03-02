@@ -39,6 +39,61 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root.value;
     }
 
+    public Key min() {
+        if (root == null) throw new IllegalStateException("Empty tree.");
+        return min(root).key;
+    }
+
+    private Node min(Node root) {
+        if (root.left == null) return root;
+        return min(root.left);
+    }
+
+    public Key max() {
+        if (root == null) throw new IllegalStateException("Empty tree.");
+        return max(root).key;
+    }
+
+    private Node max(Node root) {
+        if (root.right == null) return root;
+        return max(root.right);
+    }
+
+    public Key floor(Key key) {
+        Node node = floor(root, key);
+        if (node == null) return null;
+        return node.key;
+    }
+
+    private Node floor(Node root, Key key) {
+        if (root == null) return null;
+        int compare = key.compareTo(root.key);
+        if (compare == 0) return root;
+        if (compare < 0) return floor(root.left, key);
+        Node node = floor(root.right, key);
+        if (node != null) return node;
+        else return root;
+    }
+
+    public Key ceiling(Key key) {
+        Node node = floor(root, key);
+        if (node == null) return null;
+        return node.key;
+    }
+
+
+    private Node ceiling(Node root, Key key) {
+        if (root == null) return null;
+        int compare = key.compareTo(root.key);
+        if (compare == 0) return root;
+        if (compare < 0) {
+            Node node = ceiling(root.left, key);
+            if (node != null) return node;
+            else return root;
+        }
+        return ceiling(root.right, key);
+    }
+
     private class Node {
         private Key key;
         private Value value;
