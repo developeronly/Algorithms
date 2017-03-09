@@ -1,11 +1,13 @@
 package com.example.chapter3.binarysearchtrees;
 
 import com.example.chapter1.bagsqueuesstacks.Queue;
+import com.example.chapter3.SearchTree;
 
-public class BinarySearchTree<Key extends Comparable<Key>, Value> {
+public class BinarySearchTree<Key extends Comparable<Key>, Value> implements SearchTree<Key, Value> {
 
     private Node root;
 
+    @Override
     public int size() {
         return size(root);
     }
@@ -15,10 +17,12 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root.size;
     }
 
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
 
+    @Override
     public void put(Key key, Value value) {
         root = put(root, key, value);
     }
@@ -33,6 +37,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return root;
     }
 
+    @Override
     public Value get(Key key) {
         return get(root, key);
     }
@@ -45,6 +50,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root.value;
     }
 
+    @Override
     public Key min() {
         if (root == null) throw new IllegalStateException("Empty tree.");
         return min(root).key;
@@ -55,6 +61,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return min(root.left);
     }
 
+    @Override
     public Key max() {
         if (root == null) throw new IllegalStateException("Empty tree.");
         return max(root).key;
@@ -65,6 +72,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return max(root.right);
     }
 
+    @Override
     public Key floor(Key key) {
         Node node = floor(root, key);
         if (node == null) return null;
@@ -81,6 +89,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root;
     }
 
+    @Override
     public Key ceiling(Key key) {
         Node node = floor(root, key);
         if (node == null) return null;
@@ -100,6 +109,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return ceiling(root.right, key);
     }
 
+    @Override
     public Key select(int index) {
         return select(root, index).key;
     }
@@ -112,6 +122,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root;
     }
 
+    @Override
     public int rank(Key key) {
         return rank(key, root);
     }
@@ -124,6 +135,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         else return size(root.left);
     }
 
+    @Override
     public void deleteMin() {
         root = deleteMin(root);
     }
@@ -135,6 +147,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return root;
     }
 
+    @Override
     public void deleteMax() {
         root = deleteMax(root);
     }
@@ -146,6 +159,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return root;
     }
 
+    @Override
     public void delete(Key key) {
         root = delete(root, key);
     }
@@ -167,6 +181,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return root;
     }
 
+    @Override
     public void print() {
         print(root);
     }
@@ -178,10 +193,12 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         print(node.right);
     }
 
+    @Override
     public Iterable<Key> keys() {
         return keys(min(), max());
     }
 
+    @Override
     public Iterable<Key> keys(Key min, Key max) {
         Queue<Key> queue = new Queue<Key>();
         keys(root, queue, min, max);
@@ -195,6 +212,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         if (compareMin < 0) keys(root.left, queue, min, max);
         if (compareMin <= 0) queue.enqueue(root.key);
         if (compareMax > 0) keys(root.right, queue, min, max);
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        return get(key) != null;
     }
 
     private class Node {
