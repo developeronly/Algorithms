@@ -29,7 +29,6 @@ public class SequentialSearch<Key, Value> {
     }
 
     public Value get(Key key) {
-        if (isEmpty()) throw new IllegalStateException("Empty symbol table.");
         for (Node current = first; current != null; current = current.next) {
             if (current.key.equals(key)) {
                 return current.value;
