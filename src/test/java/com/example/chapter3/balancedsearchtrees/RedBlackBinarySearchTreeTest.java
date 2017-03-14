@@ -1,16 +1,19 @@
 package com.example.chapter3.balancedsearchtrees;
 
+import com.example.chapter3.SearchTree;
+import com.example.chapter3.TreeFactory;
 import com.example.models.Student;
 import org.junit.Test;
 
+import static com.example.chapter3.SearchTreeType.BALANCED_SEARCH_TREE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RedBlackBinarySearchTreeTest {
 
-    public RedBlackBinarySearchTree constructDummyStringTree() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree();
+    public SearchTree<String, String> constructDummyStringTree() {
+        SearchTree<String, String> redBlackBinarySearchTree = TreeFactory.searchTree(BALANCED_SEARCH_TREE);
         redBlackBinarySearchTree.put("s", "S");
         redBlackBinarySearchTree.put("e", "E");
         redBlackBinarySearchTree.put("a", "A");
@@ -29,7 +32,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void init() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree();
+        SearchTree<String, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree();
         assertEquals(0, redBlackBinarySearchTree.size());
         assertTrue(redBlackBinarySearchTree.isEmpty());
         redBlackBinarySearchTree = constructDummyStringTree();
@@ -38,7 +41,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void putString() {
-        RedBlackBinarySearchTree<Integer, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree();
+        SearchTree<Integer, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree();
         redBlackBinarySearchTree.put(0, "Suraj");
         assertEquals(1, redBlackBinarySearchTree.size());
         redBlackBinarySearchTree.put(1, "Raj");
@@ -49,7 +52,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void getString() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("S", redBlackBinarySearchTree.get("s"));
         assertEquals("X", redBlackBinarySearchTree.get("x"));
         assertEquals(null, redBlackBinarySearchTree.get("Unexpected"));
@@ -57,7 +60,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void putAndGetForGeneric() {
-        RedBlackBinarySearchTree<Student, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree<>();
+        SearchTree<Student, String> redBlackBinarySearchTree = new RedBlackBinarySearchTree<>();
         Student firstStudent = new Student(1, "Suraj", "Pune");
         redBlackBinarySearchTree.put(firstStudent, "Suraj");
         assertEquals(redBlackBinarySearchTree.get(firstStudent), "Suraj");
@@ -74,19 +77,19 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void minKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("a", redBlackBinarySearchTree.min());
     }
 
     @Test
     public void maxKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("x", redBlackBinarySearchTree.max());
     }
 
     @Test
     public void floorKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("x", redBlackBinarySearchTree.floor("x"));
         assertEquals("a", redBlackBinarySearchTree.floor("a"));
         assertEquals("x", redBlackBinarySearchTree.floor("z"));
@@ -95,7 +98,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void ceilingKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("a", redBlackBinarySearchTree.ceiling("a"));
         assertEquals("x", redBlackBinarySearchTree.ceiling("x"));
         assertEquals("p", redBlackBinarySearchTree.ceiling("o"));
@@ -104,7 +107,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void selectKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("a", redBlackBinarySearchTree.select(0));
         assertEquals("c", redBlackBinarySearchTree.select(1));
         assertEquals("e", redBlackBinarySearchTree.select(2));
@@ -112,14 +115,14 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void rankKey() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals(0, redBlackBinarySearchTree.rank("a"));
         assertEquals(8, redBlackBinarySearchTree.rank("s"));
     }
 
     @Test
     public void deleteMin() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("a", redBlackBinarySearchTree.min());
         redBlackBinarySearchTree.deleteMin();
         assertEquals("c", redBlackBinarySearchTree.min());
@@ -127,7 +130,7 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void deleteMax() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertEquals("x", redBlackBinarySearchTree.max());
         redBlackBinarySearchTree.deleteMax();
         assertEquals("s", redBlackBinarySearchTree.max());
@@ -135,28 +138,28 @@ public class RedBlackBinarySearchTreeTest {
 
     @Test
     public void contains() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         assertTrue(redBlackBinarySearchTree.contains("a"));
         assertFalse(redBlackBinarySearchTree.contains("z"));
     }
 
     @Test
     public void delete() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         redBlackBinarySearchTree.delete("e");
         assertEquals(null, redBlackBinarySearchTree.get("e"));
     }
 
     @Test
     public void print() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         redBlackBinarySearchTree.print();
         System.out.println();
     }
 
     @Test
     public void keys() {
-        RedBlackBinarySearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> redBlackBinarySearchTree = constructDummyStringTree();
         System.out.println();
         redBlackBinarySearchTree.keys().forEach(key -> System.out.print(" " + key));
         System.out.println();

@@ -1,9 +1,13 @@
 package com.example.chapter3.binarysearchtrees;
 
+import com.example.chapter3.SearchTree;
+import com.example.chapter3.TreeFactory;
 import com.example.models.Student;
 import org.junit.Test;
 
+import static com.example.chapter3.SearchTreeType.BINARY_SEARCH_TREE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -11,13 +15,13 @@ public class BinarySearchTreeTest {
 
     @Test
     public void init() {
-        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        SearchTree binarySearchTree = TreeFactory.searchTree(BINARY_SEARCH_TREE);
         assertEquals(0, binarySearchTree.size());
         assertTrue(binarySearchTree.isEmpty());
     }
 
-    public BinarySearchTree constructDummyTree() {
-        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree();
+    public SearchTree constructDummyTree() {
+        SearchTree<Integer, String> binarySearchTree = TreeFactory.searchTree(BINARY_SEARCH_TREE);
         binarySearchTree.put(3, "Suraj");
         binarySearchTree.put(4, "Raj");
         binarySearchTree.put(2, "Mahesh");
@@ -25,8 +29,8 @@ public class BinarySearchTreeTest {
         return binarySearchTree;
     }
 
-    public BinarySearchTree constructDummyStringTree() {
-        BinarySearchTree<String, String> binarySearchTree = new BinarySearchTree();
+    public SearchTree constructDummyStringTree() {
+        SearchTree<String, String> binarySearchTree = TreeFactory.searchTree(BINARY_SEARCH_TREE);
         binarySearchTree.put("s", "S");
         binarySearchTree.put("e", "E");
         binarySearchTree.put("a", "A");
@@ -45,7 +49,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void putString() {
-        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree();
+        SearchTree<Integer, String> binarySearchTree = new BinarySearchTree();
         binarySearchTree.put(0, "Suraj");
         assertEquals(1, binarySearchTree.size());
         binarySearchTree.put(1, "Raj");
@@ -56,7 +60,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void getString() {
-        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree();
+        SearchTree<Integer, String> binarySearchTree = new BinarySearchTree();
         binarySearchTree.put(0, "Suraj");
         binarySearchTree.put(1, "Raj");
         String expected = binarySearchTree.get(0);
@@ -69,7 +73,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void putAndGetForGeneric() {
-        BinarySearchTree<Student, String> binarySearchTree = new BinarySearchTree();
+        SearchTree<Student, String> binarySearchTree = new BinarySearchTree();
         Student firstStudent = new Student(1, "Suraj", "Pune");
         binarySearchTree.put(firstStudent, "Suraj");
         assertEquals(binarySearchTree.get(firstStudent), "Suraj");
@@ -86,19 +90,19 @@ public class BinarySearchTreeTest {
 
     @Test
     public void minKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(1, binarySearchTree.min().longValue());
     }
 
     @Test
     public void maxKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(4, binarySearchTree.max().longValue());
     }
 
     @Test
     public void floorKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(4, binarySearchTree.floor(5).longValue());
         assertEquals(4, binarySearchTree.floor(4).longValue());
         assertEquals(null, binarySearchTree.floor(0));
@@ -106,7 +110,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void ceilingKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(3, binarySearchTree.ceiling(3).longValue());
         assertEquals(4, binarySearchTree.ceiling(5).longValue());
         assertEquals(null, binarySearchTree.ceiling(0));
@@ -114,19 +118,19 @@ public class BinarySearchTreeTest {
 
     @Test
     public void selectKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(4, binarySearchTree.select(3).longValue());
     }
 
     @Test
     public void rankKey() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyTree();
         assertEquals(2, binarySearchTree.rank(3));
     }
 
     @Test
     public void deleteMin() {
-        BinarySearchTree<Integer, String> binarySearchTree = constructDummyStringTree();
+        SearchTree<Integer, String> binarySearchTree = constructDummyStringTree();
         assertEquals("a", binarySearchTree.min());
         binarySearchTree.deleteMin();
         assertEquals("c", binarySearchTree.min());
@@ -134,7 +138,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void deleteMax() {
-        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> binarySearchTree = constructDummyStringTree();
         assertEquals("x", binarySearchTree.max());
         binarySearchTree.deleteMax();
         assertEquals("s", binarySearchTree.max());
@@ -142,26 +146,33 @@ public class BinarySearchTreeTest {
 
     @Test
     public void delete() {
-        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> binarySearchTree = constructDummyStringTree();
         binarySearchTree.delete("e");
         assertEquals(null, binarySearchTree.get("e"));
     }
 
     @Test
     public void print() {
-        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> binarySearchTree = constructDummyStringTree();
         binarySearchTree.print();
         System.out.println();
     }
 
     @Test
     public void keys() {
-        BinarySearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        SearchTree<String, String> binarySearchTree = constructDummyStringTree();
         System.out.println();
         binarySearchTree.keys().forEach(key -> System.out.print(" " + key));
         System.out.println();
         binarySearchTree.keys("f", "t").forEach(key -> System.out.print(" " + key));
         System.out.println();
+    }
+
+    @Test
+    public void contains() {
+        SearchTree<String, String> binarySearchTree = constructDummyStringTree();
+        assertTrue(binarySearchTree.contains("a"));
+        assertFalse(binarySearchTree.contains("z"));
     }
 
 }

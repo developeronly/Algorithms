@@ -1,14 +1,16 @@
 package com.example.chapter3.balancedsearchtrees;
 
 import com.example.chapter1.bagsqueuesstacks.Queue;
+import com.example.chapter3.SearchTree;
 
-public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
+public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implements SearchTree<Key, Value> {
 
     private static final boolean BLACK = false;
     private static final boolean RED = true;
 
     private Node root;
 
+    @Override
     public int size() {
         return size(root);
     }
@@ -18,10 +20,12 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return root.size;
     }
 
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
 
+    @Override
     public void put(Key key, Value value) {
         root = put(root, key, value);
         root.color = BLACK;
@@ -75,6 +79,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return node.color == RED;
     }
 
+    @Override
     public Value get(Key key) {
         if (key == null) throw new IllegalArgumentException("Invalid key. Key can't be null.");
         return get(root, key);
@@ -91,10 +96,12 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return null;
     }
 
+    @Override
     public boolean contains(Key key) {
         return get(key) != null;
     }
 
+    @Override
     public Key min() {
         return min(root).key;
     }
@@ -104,6 +111,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         else return min(root.left);
     }
 
+    @Override
     public Key max() {
         return max(root).key;
     }
@@ -113,6 +121,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         else return max(root.right);
     }
 
+    @Override
     public Key floor(Key key) {
         if (key == null) throw new IllegalArgumentException("Invalid key. Key can't be null.");
         Node node = floor(root, key);
@@ -130,6 +139,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root;
     }
 
+    @Override
     public Key ceiling(Key key) {
         if (key == null) throw new IllegalArgumentException("Invalid key. Key can't be null.");
         Node node = ceiling(root, key);
@@ -147,6 +157,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         else return root;
     }
 
+    @Override
     public Key select(int index) {
         if (index < 0 || index >= size()) throw new IllegalArgumentException("Invalid index: " + index);
         Node node = select(root, index);
@@ -160,6 +171,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         else return node;
     }
 
+    @Override
     public int rank(Key key) {
         if (key == null) throw new IllegalArgumentException("Invalid key. Key can't be null.");
         return rank(key, root);
@@ -201,6 +213,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return node;
     }
 
+    @Override
     public void deleteMin() {
         if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
 
@@ -215,6 +228,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return balance(node);
     }
 
+    @Override
     public void deleteMax() {
         if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
         root = deleteMax(root);
@@ -230,6 +244,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return balance(node);
     }
 
+    @Override
     public void delete(Key key) {
         if (key == null) throw new IllegalArgumentException("Invalid key. Key can't be null.");
         if (!contains(key)) return;
@@ -261,15 +276,18 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
         return balance(node);
     }
 
+    @Override
     public void print() {
         print(root);
     }
 
+    @Override
     public Iterable<Key> keys() {
         if (isEmpty()) return new Queue<Key>();
         return keys(min(), max());
     }
 
+    @Override
     public Iterable<Key> keys(Key low, Key high) {
         Queue<Key> queue = new Queue<Key>();
         keys(root, queue, low, high);
