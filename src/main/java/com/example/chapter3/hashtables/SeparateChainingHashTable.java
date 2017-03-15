@@ -5,7 +5,7 @@ import com.example.chapter3.symboltables.SequentialSearch;
 
 public class SeparateChainingHashTable<Key, Value> implements HashSymbolTable<Key, Value> {
 
-    private static final int DEFAULT_SIZE = 997;
+    private static final int DEFAULT_SIZE = 4;
 
     private int numberOfKeyValPairs;
     private int tableSize;
