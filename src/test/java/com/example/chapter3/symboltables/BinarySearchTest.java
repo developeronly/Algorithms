@@ -1,6 +1,5 @@
 package com.example.chapter3.symboltables;
 
-import com.example.chapter3.symboltables.BinarySearch;
 import com.example.models.Student;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ public class BinarySearchTest {
     public void putStringElement() {
         BinarySearch<String, String> binarySearch = new BinarySearch(1);
         binarySearch.put("first element", "Suraj");
-        assertFalse(binarySearch.isEmpty());
+        assertTrue(binarySearch.isEmpty());
         assertEquals(1, binarySearch.size());
     }
 
