@@ -13,7 +13,7 @@ public class BinarySearchTest {
     public void putStringElement() {
         BinarySearch<String, String> binarySearch = new BinarySearch(1);
         binarySearch.put("first element", "Suraj");
-        assertTrue(binarySearch.isEmpty());
+        assertFalse(binarySearch.isEmpty());
         assertEquals(1, binarySearch.size());
     }
 
